@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GYSZ Group - Innovating Tomorrow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #fafafa;
+            color: #2d2d2d;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background: radial-gradient(ellipse at 20% 50%, rgba(107, 107, 107, 0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 20%, rgba(255, 165, 0, 0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 40% 80%, rgba(255, 179, 51, 0.08) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(2deg); }
+        }
+
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            background: linear-gradient(45deg, #6b6b6b, #ffa500, #ffb333, #ff8c00);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(107, 107, 107, 0.1);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        /* Mobile menu button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #2d2d2d;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            height: 50px;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+            transition: all 0.3s ease;
+            filter: brightness(1) contrast(1.1);
+            animation: logoGlow 3s ease-in-out infinite;
+            background: transparent;
+        }
+
+        @keyframes logoGlow {
+            0%, 100% { filter: brightness(1) contrast(1.1); }
+            50% { filter: brightness(1.2) contrast(1.2); }
+        }
+
+        /* Enhanced visibility on scroll */
+        header.scrolled .logo img {
+            filter: brightness(1.1) contrast(1.2) drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+        }
+
+        /* Mobile responsive logo */
+        @media (max-width: 768px) {
+            .logo img {
+                height: 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo img {
+                height: 28px;
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2d2d2d;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #ffa500, #ffb333);
+            border-radius: 25px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .nav-links a:hover::before {
+            opacity: 1;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Header scrolled state - ensure text stays visible */
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid rgba(255, 165, 0, 0.2);
+        }
+
+        header.scrolled .nav-links a {
+            color: #2d2d2d;
+        }
+
+        header.scrolled .nav-links a:hover {
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(250, 250, 250, 0.9) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, #6b6b6b, #ffa500, #ffb333, #ff8c00, #6b6b6b);
+            border-radius: 50%;
+            animation: spin 20s linear infinite;
+            transform: translate(-50%, -50%);
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        @keyframes spin {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            z-index: 2;
+            position: relative;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #ffa500, #ffb333);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: clamp(4rem, 10vw, 10rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+            line-height: 0.9;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #6b6b6b 0%, #ffa500 25%, #ffb333 50%, #ff8c00 75%, #6b6b6b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes textShimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-description {
+            font-size: 1.4rem;
+            color: #5a5a5a;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, #ffa500, #ffb333);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(255, 165, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 165, 0, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 8rem 0;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-left: 3rem;
+            padding-right: 3rem;
+            position: relative;
+        }
+
+        .section-bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,165,0,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .section-header {
+            margin-bottom: 5rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, #ffa500, #ffb333);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: #2d2d2d;
+        }
+
+        .section-description {
+            font-size: 1.3rem;
+            color: #666666;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* About Section */
+        #about {
+            background: linear-gradient(135deg, rgba(255, 165, 0, 0.03) 0%, rgba(107, 107, 107, 0.03) 100%);
+            border-radius: 50px;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 165, 0, 0.1);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            margin-top: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: #4a4a4a;
+        }
+
+        .about-text p {
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+            border-left: 3px solid transparent;
+            background: linear-gradient(to right, #ffa500, #ffb333);
+            background-clip: padding-box;
+            border-image: linear-gradient(to bottom, #ffa500, #ffb333) 1;
+            transition: all 0.3s ease;
+        }
+
+        .about-text p:hover {
+            background: rgba(255, 165, 0, 0.05);
+            transform: translateX(10px);
+        }
+
+        .about-visual {
+            height: 500px;
+            background: linear-gradient(135deg, #6b6b6b 0%, #ffa500 50%, #ffb333 100%);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(255, 165, 0, 0.2);
+        }
+
+        .about-visual::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: rotate 10s linear infinite;
+        }
+
+        .logo-3d {
+            font-size: 5rem;
+            font-weight: 900;
+            color: white;
+            z-index: 2;
+            position: relative;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transform: perspective(500px) rotateX(15deg);
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: perspective(500px) rotateX(15deg) translateY(0px); }
+            50% { transform: perspective(500px) rotateX(15deg) translateY(-10px); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Mission & Vision integrated into About */
+        .mv-section {
+            margin-top: 6rem;
+            padding-top: 4rem;
+            border-top: 1px solid rgba(255, 165, 0, 0.2);
+        }
+        .mv-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .mv-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            padding: 3.5rem;
+            border-radius: 25px;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .mv-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 25px;
+            padding: 2px;
+            background: linear-gradient(135deg, #6b6b6b, #ffa500, #ffb333);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: source-out;
+        }
+
+        .mv-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 80px rgba(255, 165, 0, 0.2);
+        }
+
+        .mv-card h3 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #ffa500, #ffb333);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .mv-card p {
+            color: #4a4a4a;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        /* Team Section */
+        #team {
+            background: linear-gradient(135deg, rgba(255, 165, 0, 0.03) 0%, rgba(107, 107, 107, 0.03) 100%);
+            border-radius: 50px;
+            margin: 4rem 0;
+            position: relative;
+            border: 1px solid rgba(255, 165, 0, 0.1);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 165, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .team-member::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #6b6b6b, #ffa500, #ffb333, #ff8c00);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .team-member:hover::before {
+            transform: scaleX(1);
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(255, 165, 0, 0.15);
+        }
+
+        .member-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6b6b6b 0%, #ffa500 50%, #ffb333 100%);
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 800;
+            box-shadow: 0 8px 25px rgba(255, 165, 0, 0.3);
+            animation: profilePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes profilePulse {
+            0%, 100% { box-shadow: 0 8px 25px rgba(255, 165, 0, 0.3); }
+            50% { box-shadow: 0 12px 35px rgba(255, 165, 0, 0.4); }
+        }
+
+        .team-member h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .team-member .role {
+            background: linear-gradient(135deg, #ffa500, #ffb333);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .team-member .bio {
+            color: #666666;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* Companies Section */
+        .companies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .company-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 165, 0, 0.1);
+            padding: 3rem;
+            border-radius: 25px;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .company-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 165, 0, 0.1), rgba(107, 107, 107, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .company-card:hover::before {
+            opacity: 1;
+        }
+
+        .company-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(255, 165, 0, 0.3);
+            box-shadow: 0 25px 80px rgba(255, 165, 0, 0.2);
+        }
+
+        .company-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #6b6b6b, #ffa500);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 800;
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 165, 0, 0.3);
+        }
+
+        .company-card h3 {
+            color: #2d2d2d;
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        .company-card p {
+            color: #666666;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(135deg, rgba(255, 165, 0, 0.03) 0%, rgba(107, 107, 107, 0.03) 100%);
+            border-radius: 50px;
+            margin: 4rem 0;
+            position: relative;
+            border: 1px solid rgba(255, 165, 0, 0.1);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            margin-top: 4rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 165, 0, 0.1);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 165, 0, 0.1);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            color: #2d2d2d;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .contact-card p {
+            color: #666666;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        /* Contact Form */
+        .contact-form-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 3rem;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 165, 0, 0.1);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            color: #2d2d2d;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 1rem;
+            border: 2px solid rgba(255, 165, 0, 0.1);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.8);
+            color: #2d2d2d;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ffa500;
+            box-shadow: 0 0 0 3px rgba(255, 165, 0, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #ffa500, #ffb333);
+            color: white;
+            border: none;
+            padding: 1.2rem 2rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 165, 0, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .form-message.success {
+            background: rgba(34, 197, 94, 0.1);
+            color: #16a34a;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        .form-message.error {
+            background: rgba(239, 68, 68, 0.1);
+            color: #dc2626;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, rgba(255, 165, 0, 0.05) 0%, rgba(107, 107, 107, 0.05) 100%);
+            border-top: 1px solid rgba(255, 165, 0, 0.1);
+            color: #666666;
+            text-align: center;
+            padding: 4rem 0;
+            margin-top: 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #6b6b6b, #ffa500, #ffb333, #ff8c00);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .companies-grid {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            }
+            
+            section {
+                padding: 6rem 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                padding: 0 1.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                border-top: 1px solid rgba(255, 165, 0, 0.1);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links a {
+                padding: 1rem;
+                text-align: center;
+                border-radius: 12px;
+                background: rgba(255, 165, 0, 0.05);
+            }
+            
+            section {
+                padding: 4rem 1.5rem;
+            }
+            
+            .hero h1 {
+                font-size: clamp(3rem, 12vw, 6rem);
+            }
+            
+            .hero-description {
+                font-size: 1.2rem;
+                margin-bottom: 2rem;
+            }
+            
+            .about-content,
+            .mv-grid,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .companies-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+            
+            .team-member {
+                padding: 1.5rem;
+            }
+            
+            .contact-form-container {
+                padding: 2rem;
+            }
+            
+            .company-card {
+                padding: 2rem;
+            }
+            
+            .about-visual {
+                height: 300px;
+            }
+            
+            .logo-3d {
+                font-size: 3rem;
+            }
+            
+            .mv-card {
+                padding: 2rem;
+            }
+            
+            .section-title {
+                font-size: clamp(2rem, 8vw, 3rem);
+            }
+            
+            .section-description {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 0 1rem;
+            }
+            
+            .hero h1 {
+                font-size: clamp(2.5rem, 10vw, 4rem);
+            }
+            
+            .hero-description {
+                font-size: 1.1rem;
+            }
+            
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+            
+            section {
+                padding: 3rem 1rem;
+            }
+            
+            .team-member {
+                padding: 1.5rem;
+            }
+            
+            .company-card {
+                padding: 1.5rem;
+            }
+            
+            .contact-form-container {
+                padding: 1.5rem;
+            }
+            
+            .mv-card {
+                padding: 1.5rem;
+            }
+            
+            .about-text {
+                font-size: 1.1rem;
+            }
+            
+            .member-photo {
+                width: 100px;
+                height: 100px;
+                font-size: 1.8rem;
+            }
+            
+            .company-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Scroll animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="gysz.png" alt="GYSZ Group Logo">
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#companies">Companies</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-subtitle">Welcome to the Future</div>
+            <h1>GYSZ GROUP</h1>
+            <p class="hero-description">
+                A diversified conglomerate building essential businesses across agriculture, environmental solutions, sports, hospitality, manufacturing, and professional services, creating value and positive impact in communities worldwide.
+            </p>
+            <a href="#about" class="cta-button">Explore Our Universe</a>
+        </div>
+    </section>
+
+    <!-- About Us -->
+    <section id="about">
+        <div class="section-bg-pattern"></div>
+        <div class="section-header fade-in">
+            <div class="section-subtitle">Who We Are</div>
+            <h2 class="section-title">About GYSZ Group</h2>
+            <p class="section-description">
+                Building bridges across industries with a diverse portfolio spanning agriculture, environmental solutions, sports, hospitality, manufacturing, and professional services that create lasting value for communities worldwide.
+            </p>
+        </div>
+        <div class="about-content">
+            <div class="about-text fade-in">
+                <p>GYSZ Group represents a dynamic conglomerate with deep roots in essential industries that serve communities worldwide. From our origins in farming, transportation, and mining in India through London Dollar Predecessor, we have evolved into a diversified business empire spanning agriculture, environmental technology, sports, hospitality, manufacturing, and professional services.</p>
+                
+                <p>Our portfolio encompasses everything from sustainable farming and waste management to premium hospitality experiences and specialized manufacturing. We believe in building businesses that not only generate profits but also contribute meaningfully to society - whether through environmental conservation, sports charity initiatives, or providing essential services to ports, restaurants, and pet owners.</p>
+                
+                <p>With operations across India, the Middle East, and the USA, GYSZ Group maintains a commitment to excellence in every sector we serve. Our companies work synergistically, sharing expertise and resources while maintaining their unique identities and specialized focus areas, creating a robust ecosystem of interconnected businesses.</p>
+            </div>
+            <div class="about-visual fade-in">
+                <div class="logo-3d">GYSZ</div>
+            </div>
+        </div>
+
+        <!-- Mission & Vision integrated into About section -->
+        <div class="mv-section">
+            <div class="mv-grid">
+                <div class="mv-card fade-in">
+                    <h3>Our Mission</h3>
+                    <p>To build and operate diverse businesses that serve essential human needs while creating sustainable value for all stakeholders. From feeding communities through our agricultural and food supply operations to protecting the environment through clean technology, we are committed to businesses that matter.</p>
+                </div>
+                <div class="mv-card fade-in">
+                    <h3>Our Vision</h3>
+                    <p>To be recognized as a leading diversified conglomerate that bridges traditional industries with modern solutions, creating positive impact across agriculture, environment, sports, hospitality, manufacturing, and professional services while building lasting partnerships in every community we serve.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section id="team">
+        <div class="section-header fade-in">
+            <div class="section-subtitle">Leadership Excellence</div>
+            <h2 class="section-title">Our Visionary Team</h2>
+            <p class="section-description">
+                Exceptional leaders driving innovation, excellence, and transformative growth across all our portfolio companies.
+            </p>
+        </div>
+        <div class="team-grid">
+            <div class="team-member fade-in">
+                <div class="member-photo">SJ</div>
+                <h3>Sarah Johnson</h3>
+                <div class="role">Chief Executive Officer</div>
+                <p class="bio">Visionary leader with 20+ years in strategic business development, global expansion, and digital transformation initiatives</p>
+            </div>
+            <div class="team-member fade-in">
+                <div class="member-photo">MC</div>
+                <h3>Michael Chen</h3>
+                <div class="role">Chief Technology Officer</div>
+                <p class="bio">Innovation expert driving cutting-edge technology integration, AI development, and emerging tech adoption across all ventures</p>
+            </div>
+            <div class="team-member fade-in">
+                <div class="member-photo">ER</div>
+                <h3>Emily Rodriguez</h3>
+                <div class="role">Chief Financial Officer</div>
+                <p class="bio">Financial strategist ensuring sustainable growth, optimal capital allocation, and strategic investment management</p>
+            </div>
+            <div class="team-member fade-in">
+                <div class="member-photo">DP</div>
+                <h3>David Park</h3>
+                <div class="role">Chief Operating Officer</div>
+                <p class="bio">Operations excellence leader optimizing performance, scalability, and operational efficiency across all portfolio companies</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Companies -->
+    <section id="companies">
+        <div class="section-header fade-in">
+            <div class="section-subtitle">Our Portfolio</div>
+            <h2 class="section-title">Innovation Ecosystem</h2>
+            <p class="section-description">
+                Eleven groundbreaking companies across diverse industries, each leading their respective markets with innovative solutions and transformative services from agriculture to hospitality.
+            </p>
+        </div>
+        <div class="companies-grid">
+            <div class="company-card fade-in">
+                <div class="company-icon">🌾</div>
+                <h3>London Dollar Predecessor</h3>
+                <p>Comprehensive agricultural operations, transportation services, and mining activities across India, establishing strong foundations in essential industries with sustainable practices.</p>
+            </div>
+            <div class="company-card fade-in">
+                <div class="company-icon">🌱</div>
+                <h3>Bheema Environment Technology</h3>
+                <p>Advanced waste management solutions, renewable energy systems, and clean earth initiatives promoting environmental sustainability and ecological preservation.</p>
+            </div>
+            <div class="company-card fade-in">
+                <div class="company-icon">⚽</div>
+                <h3>Godwill Sports</h3>
+                <p>Sports charity organization dedicated to promoting athletic development, community engagement, and providing sporting opportunities for underserved communities.</p>
+            </div>
+            <div class="company-card fade-in">
+                <div class="company-icon">🏟️</div>
+                <h3>PlayStation Sports Turf</h3>
+                <p>Premium sports turf solutions and field construction services, delivering world-class playing surfaces for professional and recreational sporting facilities.</p>
+            </div>
+            <div class="company-card fade-in">
+                <div class="company-icon">⛽</div>
+                <h3>Oil Jet Pvt Ltd</h3>
+                <p>Essential oil and fuel supply services to ports and ships, ensuring reliable maritime logistics and supporting global shipping operations with quality products.</p>
+            </div>
+            <div class="company-card fade-in">
+                <div class="company-icon">🥩</div>
+                <h3>Capital Supply</h3>
+                <p>Premium meat supply operations serving retail and wholesale markets, delivering high-quality protein products with comprehensive distribution networks.</p>
+            </div>
+            <div class="company-card fade-in">
+                <div class="company-icon">🍽️</div>
+                <h3>Tachi</h3>
+                <p>Exceptional restaurant and hospitality services, creating memorable dining experiences and providing comprehensive hospitality solutions for diverse clientele.</p>
+            </div>
+            <div class="company-card fade-in">
+                <div class="company-icon">🏭</div>
+                <h3>Masterduct</h3>
+                <p>Specialized duct manufacturing and HVAC solutions across the Middle East, providing cutting-edge ventilation systems and industrial air management products.</p>
+            </div>
+            <div class="company-card fade-in">
+                <div class="company-icon">🚬</div>
+                <h3>GYSZ Tobacco</h3>
+                <p>Premium tobacco, nicotine, and e-cigarette products serving markets in the Middle East and USA with innovative smoking alternatives and quality tobacco solutions.</p>
+            </div>
+            <div class="company-card fade-in">
+                <div class="company-icon">🐕</div>
+                <h3>Pets Park</h3>
+                <p>Comprehensive pet grooming and boarding services, providing professional pet care, comfortable accommodation, and specialized grooming for beloved companion animals.</p>
+            </div>
+            <div class="company-card fade-in">
+                <div class="company-icon">⚖️</div>
+                <h3>RD Associates</h3>
+                <p>Professional legal entity and accounting services, offering comprehensive corporate legal support, financial consulting, and business advisory solutions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us -->
+    <section id="contact">
+        <div class="section-header fade-in">
+            <div class="section-subtitle">Get In Touch</div>
+            <h2 class="section-title">Contact Us</h2>
+            <p class="section-description">
+                Ready to explore partnership opportunities? Reach out to discuss collaborations, business ventures, or learn more about GYSZ Group's diverse portfolio of essential businesses serving communities worldwide.
+            </p>
+        </div>
+        
+        <div class="contact-container">
+            <div class="contact-info fade-in">
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
+                    <h3>Visit Us</h3>
+                    <p>GYSZ Group Headquarters<br>
+                    Innovation District, Dubai<br>
+                    United Arab Emirates</p>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">📞</div>
+                    <h3>Call Us</h3>
+                    <p>+971 4 XXX XXXX<br>
+                    Available 24/7 for urgent matters</p>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">✉️</div>
+                    <h3>Email Us</h3>
+                    <p>info@gyszgroup.com<br>
+                    partnerships@gyszgroup.com</p>
+                </div>
+            </div>
+            
+            <div class="contact-form-container fade-in">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company">Company/Organization</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="partnership">Partnership Opportunities</option>
+                            <option value="investment">Investment Inquiries</option>
+                            <option value="collaboration">Collaboration Proposals</option>
+                            <option value="media">Media & Press</option>
+                            <option value="careers">Career Opportunities</option>
+                            <option value="general">General Inquiry</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Tell us about your inquiry..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <span class="btn-text">Send Message</span>
+                        <span class="btn-loading" style="display: none;">Sending...</span>
+                    </button>
+                </form>
+                
+                <div id="form-message" class="form-message" style="display: none;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 GYSZ Group. All rights reserved. | Innovating Tomorrow, Leading Today</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.textContent = '☰';
+            });
+        });
+
+        // Create floating particles
+        function createParticles() {
+            const particleCount = window.innerWidth < 768 ? 20 : 50;
+            const body = document.body;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random size between 2-6px
+                const size = Math.random() * 4 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                // Random position
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                
+                // Random animation delay
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                
+                body.appendChild(particle);
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Enhanced Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Add stagger effect
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with fade-in class
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect - ensure text stays visible
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const scrolled = window.pageYOffset;
+            
+            if (scrolled > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Parallax effect for hero section (disabled on mobile for performance)
+        if (window.innerWidth > 768) {
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const hero = document.querySelector('.hero');
+                if (hero) {
+                    hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+                }
+                
+                // Parallax for background patterns
+                const patterns = document.querySelectorAll('.section-bg-pattern');
+                patterns.forEach(pattern => {
+                    const rect = pattern.getBoundingClientRect();
+                    const speed = 0.5;
+                    pattern.style.transform = `translateY(${scrolled * speed}px)`;
+                });
+            });
+        }
+
+        // Enhanced hover effects for company cards
+        document.querySelectorAll('.company-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                // Create ripple effect
+                const ripple = document.createElement('div');
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255, 165, 0, 0.3)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.left = '50%';
+                ripple.style.top = '50%';
+                ripple.style.width = '20px';
+                ripple.style.height = '20px';
+                ripple.style.marginLeft = '-10px';
+                ripple.style.marginTop = '-10px';
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add ripple animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Mouse movement parallax for hero content (desktop only)
+        if (window.innerWidth > 768) {
+            document.addEventListener('mousemove', (e) => {
+                const mouseX = e.clientX / window.innerWidth;
+                const mouseY = e.clientY / window.innerHeight;
+                
+                const heroContent = document.querySelector('.hero-content');
+                if (heroContent) {
+                    const moveX = (mouseX - 0.5) * 20;
+                    const moveY = (mouseY - 0.5) * 20;
+                    heroContent.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                }
+            });
+        }
+
+        // Initialize particles after DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            
+            // Add loading animation
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 1s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Contact Form Functionality
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('.submit-btn');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const btnLoading = submitBtn.querySelector('.btn-loading');
+            const messageDiv = document.getElementById('form-message');
+            
+            // Disable button and show loading
+            submitBtn.disabled = true;
+            btnText.style.display = 'none';
+            btnLoading.style.display = 'inline';
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            try {
+                // Simulate form submission (replace with your actual endpoint)
+                await submitContactForm(data);
+                
+                // Show success message
+                messageDiv.className = 'form-message success';
+                messageDiv.textContent = 'Thank you for your message! We\'ll get back to you within 24 hours.';
+                messageDiv.style.display = 'block';
+                
+                // Reset form
+                this.reset();
+                
+            } catch (error) {
+                // Show error message
+                messageDiv.className = 'form-message error';
+                messageDiv.textContent = 'Sorry, there was an error sending your message. Please try again or contact us directly.';
+                messageDiv.style.display = 'block';
+            } finally {
+                // Re-enable button
+                submitBtn.disabled = false;
+                btnText.style.display = 'inline';
+                btnLoading.style.display = 'none';
+                
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                }, 5000);
+            }
+        });
+
+        // Function to submit contact form (customize this for your backend)
+        async function submitContactForm(data) {
+            const emailData = {
+                to_email: 'info@gyszgroup.com',
+                from_name: data.name,
+                from_email: data.email,
+                company: data.company || 'Not provided',
+                phone: data.phone || 'Not provided',
+                subject: data.subject,
+                message: data.message
+            };
+            
+            // Simulate API call
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    console.log('Contact form data:', emailData);
+                    resolve();
+                }, 2000);
+            });
+        }
+
+        // Form validation enhancements
+        document.querySelectorAll('.contact-form input, .contact-form select, .contact-form textarea').forEach(field => {
+            field.addEventListener('blur', function() {
+                if (this.hasAttribute('required') && !this.value.trim()) {
+                    this.style.borderColor = '#ef4444';
+                } else {
+                    this.style.borderColor = 'rgba(255, 165, 0, 0.1)';
+                }
+            });
+        });
+
+        // Handle window resize for responsive particles
+        window.addEventListener('resize', () => {
+            // Remove existing particles
+            document.querySelectorAll('.particle').forEach(particle => {
+                particle.remove();
+            });
+            // Recreate with appropriate count
+            createParticles();
+        });
+    </script>
+</body>
+</html>
